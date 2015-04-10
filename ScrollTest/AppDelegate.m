@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,32 +16,14 @@
 
 @implementation AppDelegate
 
-- (void)printRect:(CGRect)rect name:(NSString *)name
-{
-    NSLog(@"%@ x=%f, y=%f, width=%f, height=%f", name, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    CGRect screenRect = self.window.bounds;
-
-    // Override point for customization after application launch.
-    //UIImage * myImage = [UIImage imageNamed: @"rainbow-marble.jpg"];
-    UIImage * myImage = [UIImage imageNamed: @"spaceshuttle.jpg"];
-    //UIImage * myImage = [UIImage imageNamed: @"chicken.jpg"];
-    UIImageView *pictureView = [[UIImageView alloc] initWithImage:myImage];
+    ViewController *viewController = [[ViewController alloc] init];
+    self.window.rootViewController = viewController;
     
-    [self printRect:screenRect name:@"screenRect"];
-    [self printRect:pictureView.frame name:@"pictureView.frame"];
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
-    scrollView.contentSize = pictureView.frame.size;
-    
-    //[self.window addSubview:pictureView];
-    [scrollView addSubview:pictureView];
-    [self.window addSubview:scrollView];
     self.window.backgroundColor = [UIColor clearColor];
     [self.window makeKeyAndVisible];
     return YES;
